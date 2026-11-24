@@ -168,3 +168,9 @@ body { font-feature-settings: "ss01", "tnum"; }
 .me-tabs button.on { background: var(--bg-elev); color: var(--ink); box-shadow: var(--shadow), 0 0 0 1px var(--line); }
 .team-ic { width: 30px; height: 30px; border-radius: 7px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-fg); flex: none; }
 .mono-num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* 手機：登入頁改單欄，避免表單被壓成半寬 */
+@media (max-width: 860px) {
+  .auth { grid-template-columns: 1fr; }
+  .auth-art { display: none; }
+}
