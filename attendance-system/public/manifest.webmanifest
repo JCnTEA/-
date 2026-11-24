@@ -1,2 +1,0 @@
-{ "name": "考勤打卡系統", "short_name": "考勤打卡", "start_url": "/", "display": "standalone", "background_color": "#0d1020", "theme_color": "#5b5bd6",
-  "icons": [{ "src": "/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }] }

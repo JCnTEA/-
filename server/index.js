@@ -551,6 +551,7 @@ startServer({
     if (url.startsWith('/api/')) { res.setHeader('Access-Control-Allow-Origin', url.startsWith('/api/v1/') ? '*' : 'null'); return r.handle(req, res, {}); }
     if (url.startsWith('/brand/')) { req.url = req.url.slice(6); return serveStatic(req, res, [BRAND_DIR]); }
     if (url === '/kiosk' || url === '/kiosk/') req.url = '/kiosk.html';
+    if (url === '/hist' || url === '/hist/') req.url = '/hist/index.html';
     return serveStatic(req, res, [PUBLIC], join(PUBLIC, 'index.html'));
   }
 });

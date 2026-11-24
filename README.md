@@ -8,6 +8,8 @@
 - 部署：一台 1 核 1GB 的主機就夠；也提供 Dockerfile / docker-compose
 - 資料：全部留在自己的機器上（`data/` 目錄），不依賴任何雲端服務
 
+> 功能新增與異動都即時記錄在「更新總覽」：啟動後開 <http://localhost:3001/hist/>，或直接看 [`public/hist/index.html`](public/hist/index.html)。
+
 ---
 
 ## 畫面
@@ -75,15 +77,56 @@
 ## 本機啟動
 
 需求：Node.js **22.13 以上**（用到內建的 `node:sqlite`，不需要安裝 MySQL／Postgres）。
+先開一個終端機輸入 `node -v`，版本要是 `v22.x` 以上；沒裝就到 <https://nodejs.org/zh-tw> 下載 LTS 版。
+
+### 方法 1：Windows 雙擊 `start-demo.cmd`（建議）
+
+1. 開啟檔案總管，進入 `C:\Users\JcMTEA\Desktop\attendance-system`
+2. 雙擊 `start-demo.cmd`
+3. 它會自動檢查 Node、設好 `DEMO` / `PORT`、4 秒後自動開瀏覽器
+
+停止：在這個黑色視窗按 `Ctrl+C`，或直接關掉視窗。
+
+### 方法 2：Windows PowerShell 手動下指令
+
+```powershell
+cd C:\Users\JcMTEA\Desktop\attendance-system
+$env:DEMO="1"; $env:PORT="3001"; npm start
+```
+
+### 方法 3：Windows 命令提示字元（cmd）
+
+```bat
+cd /d C:\Users\JcMTEA\Desktop\attendance-system
+set DEMO=1
+set PORT=3001
+npm start
+```
+
+### 方法 4：macOS / Linux
 
 ```bash
 cd attendance-system
-DEMO=1 PORT=3001 npm start
-# 開啟 http://localhost:3001        ← 後台／員工端
-# 開啟 http://localhost:3001/kiosk  ← 現場打卡機
+./start-demo.sh          # 等同 DEMO=1 PORT=3001 npm start
 ```
 
+啟動後開這兩個網址：
+
+- <http://localhost:3001> ← 後台／員工端
+- <http://localhost:3001/kiosk> ← 現場打卡機（平板放櫃台）
+
 第一次啟動會在 `data/rostermark.db` 建庫；要重置示範資料，把整個 `data/` 刪掉再啟動即可。
+
+### 啟動不起來？先對照這張表
+
+| 畫面上的訊息 | 原因 | 解法 |
+| --- | --- | --- |
+| `找不到 '...\attendance-system\attendance-system' 路徑` | 已經在專案資料夾裡，又 `cd attendance-system` 一次 | 直接跑 `npm start`；或先 `cd ..` 再進 |
+| `'DEMO=1' 無法辨識為 Cmdlet、函數...` | PowerShell 不支援 Linux 的「變數放前面」寫法 | 用 `$env:DEMO="1"; $env:PORT="3001"; npm start` |
+| `'npm' 無法辨識...` | 沒裝 Node.js，或裝完沒重開視窗 | 裝 Node 22 LTS → 關掉視窗重開 → `node -v` 確認 |
+| `ERR_UNKNOWN_BUILTIN_MODULE` / `node:sqlite` 錯誤 | Node 版本太舊（低於 22.13） | 升級 Node 到 22 LTS 以上 |
+| `EADDRINUSE` | 3001 被其他程式占用 | 換一個埠，例如 `$env:PORT="3010"` |
+| 瀏覽器打不開、一直轉圈 | 服務還沒啟動完，或被防火牆擋 | 等視窗出現「listening」，允許 Node 通過防火牆 |
 
 環境變數：
 
