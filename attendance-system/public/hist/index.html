@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>更新總覽 · 考勤打卡系統</title>
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --ink:#111827; --ink2:#4b5563; --ink3:#9ca3af; --line:#e5e7eb; --accent:#2563eb; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0f1115; --card:#171a21; --ink:#e5e7eb; --ink2:#b6bcc6; --ink3:#7c828d; --line:#262b34; --accent:#7aa2ff; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:40px 20px 64px; background:var(--bg); color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif; line-height:1.7; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
+  h1 { font-size:26px; margin:0 0 4px; letter-spacing:.02em; }
+  .sub { margin:0; color:var(--ink2); font-size:14px; }
+  .back { font-size:14px; color:var(--accent); text-decoration:none; border:1px solid var(--line); background:var(--card);
+    padding:8px 14px; border-radius:999px; white-space:nowrap; }
+  .back:hover { border-color:var(--accent); }
+  .list { display:grid; gap:14px; }
+  .item { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+  .when { font-size:12.5px; color:var(--ink3); letter-spacing:.04em; }
+  .title { font-size:16.5px; font-weight:700; margin:4px 0 10px; }
+  ul { margin:0; padding-left:1.15em; color:var(--ink2); font-size:14.5px; }
+  li { margin:3px 0; }
+  .tag { display:inline-block; font-size:12px; color:var(--accent); background:color-mix(in srgb, var(--accent) 12%, transparent);
+    border-radius:6px; padding:1px 8px; margin-right:8px; vertical-align:1px; }
+  footer { margin-top:32px; color:var(--ink3); font-size:12.5px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>更新總覽</h1>
+      <p class="sub">考勤打卡系統 · 所有功能新增與異動都即時記錄在這裡</p>
+    </div>
+    <a class="back" href="/">回到系統</a>
+  </header>
+
+  <div class="list">
+
+    <div class="item">
+      <div class="when">2026-11-24</div>
+      <div class="title">Windows 一鍵啟動、更新總覽頁</div>
+      <ul>
+        <li><span class="tag">新增</span>Windows 啟動腳本 <code>start-demo.cmd</code>：雙擊即啟動，自動檢查 Node 版本、設定示範模式與埠號，並自動開啟瀏覽器</li>
+        <li><span class="tag">新增</span>macOS／Linux 啟動腳本 <code>start-demo.sh</code></li>
+        <li><span class="tag">新增</span>本頁「更新總覽」</li>
+        <li><span class="tag">修正</span>README 補上 Windows PowerShell／cmd 的啟動寫法，以及「重複 cd」、「'DEMO=1' 無法辨識」等常見錯誤對照表</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="when">2026-11-23</div>
+      <div class="title">月班表效能、員工端月班表、示範資料</div>
+      <ul>
+        <li><span class="tag">改善</span>月班表改成一次查詢後在記憶體組資料，25 人 × 30 天的載入從約 1.2 秒降到 20～24 毫秒</li>
+        <li><span class="tag">新增</span>後台月班表可整月套用班別、一鍵複製上月班表、每日各班別人數統計</li>
+        <li><span class="tag">新增</span>員工端「本月班表」逐日列出幾點上班－幾點下班、當天實際打卡與狀態，並附本月出勤統計（應出勤、遲到、未打下班卡、工時、加班）</li>
+        <li><span class="tag">改善</span>員工端統計卡在手機上改為單卡三段排版，日期與時間不再換行</li>
+        <li><span class="tag">新增</span>台灣情境示範資料：25 人、6 個單位、3 個地點、4 種班別（含跨夜夜班）、整月班表、近 35 天打卡、請假與補卡</li>
+        <li><span class="tag">修正</span>時區改為 Asia/Taipei 後，核心測試改以明確時區參數執行，測試全數通過</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="when">2026-11-22</div>
+      <div class="title">繁體中文化與在地化</div>
+      <ul>
+        <li><span class="tag">新增</span>以開源專案 rostermark（MIT）為底座，保留原有打卡、排班、出勤、報表、API 能力</li>
+        <li><span class="tag">改善</span>後台與員工端介面全面改為繁體中文（總覽、人員名單、月班表、出勤明細、請假、補卡、報表、設定）</li>
+        <li><span class="tag">改善</span>人員名單欄位涵蓋姓名、工號、職稱、單位、地點、角色、在職狀態，並支援 CSV 匯入</li>
+        <li><span class="tag">改善</span>所有 CSV 匯出表頭中文化，錯誤訊息與提示文字中文化</li>
+        <li><span class="tag">改善</span>預設公司名稱、時區、示範帳號改為台灣情境；打卡機與登入頁同步中文化</li>
+        <li><span class="tag">新增</span>繁中 README：本機啟動、三種部署方式、搬到新主機、備份、打卡機設定、API 一覽、二次開發對照</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>資料存放於主機的 data/ 目錄，本頁為靜態說明頁，不影響打卡資料。</footer>
+</div>
+</body>
+</html>

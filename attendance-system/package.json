@@ -1,0 +1,14 @@
+{
+  "name": "attendance-system",
+  "version": "1.0.0",
+  "description": "繁體中文考勤打卡系統：月班表、手機與打卡機打卡、地點圍籬、請假與補卡審核、出勤報表。基於 MIT 授權的 rostermark 修改。",
+  "type": "module",
+  "license": "MIT",
+  "author": "Musa Bukhari",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js"
+  },
+  "keywords": ["attendance", "考勤", "排班", "班表", "打卡", "shift-scheduling", "roster", "self-hosted", "hr"]
+}
